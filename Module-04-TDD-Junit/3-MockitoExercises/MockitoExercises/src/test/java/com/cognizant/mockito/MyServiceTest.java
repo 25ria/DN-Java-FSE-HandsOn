@@ -1,24 +1,21 @@
 package com.cognizant.mockito;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
-
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import static org.mockito.Mockito.verify;
 
 public class MyServiceTest {
 
     @Test
-    public void testExternalApi() {
+    public void testVerifyInteraction() {
 
         ExternalApi mockApi = Mockito.mock(ExternalApi.class);
 
-        when(mockApi.getData()).thenReturn("Mock Data");
-
         MyService service = new MyService(mockApi);
 
-        String result = service.fetchData();
+        service.fetchData();
 
-        assertEquals("Mock Data", result);
+        verify(mockApi).getData();
     }
 }
