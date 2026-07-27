@@ -3,22 +3,23 @@ package com.cognizant.mockito;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 public class MyServiceTest {
 
     @Test
-    public void testVoidMethod() {
+    public void testMultipleReturns() {
 
         ExternalApi mockApi = Mockito.mock(ExternalApi.class);
 
-        doNothing().when(mockApi).processData();
+        when(mockApi.getData())
+                .thenReturn("First Mock Data")
+                .thenReturn("Second Mock Data");
 
         MyService service = new MyService(mockApi);
 
-        service.execute();
-
-        verify(mockApi).processData();
+        assertEquals("First Mock Data", service.fetchData());
+        assertEquals("Second Mock Data", service.fetchData());
     }
 }

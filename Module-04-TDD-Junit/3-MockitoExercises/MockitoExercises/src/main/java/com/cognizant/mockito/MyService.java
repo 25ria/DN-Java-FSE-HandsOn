@@ -8,7 +8,7 @@ public class MyService {
         this.api = api;
     }
 
-    public void execute() {
-        api.processData();
+    public String fetchData() {
+        return api.getData();
     }
 }
