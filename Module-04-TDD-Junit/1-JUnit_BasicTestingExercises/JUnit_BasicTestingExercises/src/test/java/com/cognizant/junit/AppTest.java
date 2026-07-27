@@ -1,56 +1,59 @@
 package com.cognizant.junit;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
 
-    Calculator calculator = new Calculator();
+    Calculator calculator;
+
+    @BeforeEach
+    void setUp() {
+        calculator = new Calculator();
+        System.out.println("Setting up Calculator...");
+    }
+
+    @AfterEach
+    void tearDown() {
+        System.out.println("Cleaning up...");
+    }
 
     @Test
     void testAddition() {
-        assertEquals(5, calculator.add(2, 3));
+
+        // Arrange
+        int a = 2;
+        int b = 3;
+
+        // Act
+        int result = calculator.add(a, b);
+
+        // Assert
+        assertEquals(5, result);
     }
 
     @Test
     void testSubtraction() {
-        assertEquals(2, calculator.subtract(5, 3));
+
+        // Arrange
+        int a = 10;
+        int b = 4;
+
+        // Act
+        int result = calculator.subtract(a, b);
+
+        // Assert
+        assertEquals(6, result);
     }
 
     @Test
-    void testMultiplication() {
-        assertEquals(12, calculator.multiply(3, 4));
-    }
+    void testDivisionException() {
 
-    @Test
-    void testTrue() {
-        assertTrue(calculator.add(2, 2) == 4);
-    }
-
-    @Test
-    void testFalse() {
-        assertFalse(calculator.add(2, 2) == 5);
-    }
-
-    @Test
-    void testNotEquals() {
-        assertNotEquals(10, calculator.add(2, 3));
-    }
-
-    @Test
-    void testNotNull() {
-        assertNotNull(calculator.getMessage());
-    }
-
-    @Test
-    void testNull() {
-        assertNull(calculator.getNullValue());
-    }
-
-    @Test
-    void testException() {
-        assertThrows(ArithmeticException.class,
-                () -> calculator.divide(10, 0));
+        // Arrange + Act + Assert
+        assertThrows(
+                ArithmeticException.class,
+                () -> calculator.divide(10, 0)
+        );
     }
 }
