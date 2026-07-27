@@ -8,49 +8,46 @@ class AppTest {
 
     Calculator calculator;
 
+    @BeforeAll
+    static void beforeAll() {
+        System.out.println("========== Starting Test Suite ==========");
+    }
+
+    @AfterAll
+    static void afterAll() {
+        System.out.println("========== Test Suite Finished ==========");
+    }
+
     @BeforeEach
     void setUp() {
         calculator = new Calculator();
-        System.out.println("Setting up Calculator...");
+        System.out.println("Creating Calculator");
     }
 
     @AfterEach
     void tearDown() {
-        System.out.println("Cleaning up...");
+        System.out.println("Cleaning Resources");
     }
 
     @Test
     void testAddition() {
 
-        // Arrange
-        int a = 2;
-        int b = 3;
+        int result = calculator.add(2, 3);
 
-        // Act
-        int result = calculator.add(a, b);
-
-        // Assert
         assertEquals(5, result);
     }
 
     @Test
     void testSubtraction() {
 
-        // Arrange
-        int a = 10;
-        int b = 4;
+        int result = calculator.subtract(10, 4);
 
-        // Act
-        int result = calculator.subtract(a, b);
-
-        // Assert
         assertEquals(6, result);
     }
 
     @Test
-    void testDivisionException() {
+    void testException() {
 
-        // Arrange + Act + Assert
         assertThrows(
                 ArithmeticException.class,
                 () -> calculator.divide(10, 0)
