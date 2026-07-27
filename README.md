@@ -13,10 +13,10 @@ Module-03-PLSQL
 
 - [x] Exercise 01 - Singleton Pattern
 - [x] Exercise 02 - Factory Method
-- [ ] Exercise 02 - Ecommerce Search
-- [ ] Exercise 07 - Financial Forecasting
-- [ ] Exercise 01 - Control Structures
-- [ ] Exercise 03 - Stored Procedures
+- [x] Exercise 02 - Ecommerce Search
+- [x] Exercise 07 - Financial Forecasting
+- [x] Exercise 01 - Control Structures
+- [x] Exercise 03 - Stored Procedures
 
 ## Tech Stack
 
