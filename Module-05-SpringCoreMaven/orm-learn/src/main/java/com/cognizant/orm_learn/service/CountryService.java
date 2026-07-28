@@ -23,4 +23,15 @@ public class CountryService {
     public void addCountry(Country country) {
         countryRepository.save(country);
     }
+    public List<Country> searchCountries(String text) {
+    return countryRepository.findByNameContaining(text);
+}
+
+public List<Country> searchCountriesSorted(String text) {
+    return countryRepository.findByNameContainingOrderByNameAsc(text);
+}
+
+public List<Country> searchCountriesStartingWith(String alphabet) {
+    return countryRepository.findByNameStartingWith(alphabet);
+}
 }

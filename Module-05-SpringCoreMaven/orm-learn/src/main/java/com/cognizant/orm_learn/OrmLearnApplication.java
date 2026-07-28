@@ -24,7 +24,9 @@ public class OrmLearnApplication {
 
         countryService = context.getBean(CountryService.class);
 
-        testAddCountry();
+        testSearchCountries();
+        testSearchCountriesSorted();
+        testSearchCountriesStartingWith();
     }
 
     private static void testAddCountry() {
@@ -39,4 +41,30 @@ public class OrmLearnApplication {
 
         LOGGER.info("End");
     }
+    private static void testSearchCountries() {
+
+    LOGGER.info("Search Countries");
+
+    countryService.searchCountries("ou")
+            .forEach(country ->
+                    LOGGER.info("{} - {}", country.getCode(), country.getName()));
+}
+
+private static void testSearchCountriesSorted() {
+
+    LOGGER.info("Search Countries Sorted");
+
+    countryService.searchCountriesSorted("ou")
+            .forEach(country ->
+                    LOGGER.info("{} - {}", country.getCode(), country.getName()));
+}
+
+private static void testSearchCountriesStartingWith() {
+
+    LOGGER.info("Search Countries Starting With Z");
+
+    countryService.searchCountriesStartingWith("Z")
+            .forEach(country ->
+                    LOGGER.info("{} - {}", country.getCode(), country.getName()));
+}
 }
